@@ -1,0 +1,69 @@
+﻿@model IList<Booxwap.Mvc.Models.ListModel>
+
+@using (Html.BeginForm("Index", "Wish", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post))
+{
+    
+    <div class="well">
+        <div class="text-center">
+            <h4>Wishlist</h4>
+        </div>
+        <div id="AddPanel" class="">
+            <div style="margin-bottom: 10px">
+                <input type="text" style="height: 35px" class="form-control" id="txtBookName" placeholder="Amazon: search by title"/>
+            </div>
+
+            <div class="text-center" style="margin-bottom: 10px">
+                <input type="text" id="btnBookSearch1" value="Search" class="btn btn-sm btn-info" onclick="btnSearch_Click"/>
+            </div>
+
+            <div>
+                <asp:label id="lblDuplicate" runat="server" forecolor="Red"></asp:label>
+            </div>
+            <div>
+                <asp:button runat="server" visible="false" id="btnSearch" text="Search" onclick="btnSearch_Click"/>
+                <asp:button runat="server" id="btnSave" style="display: none" text="Search" onclick="btnSave_Click"/>
+                <asp:textbox runat="server" id="hdnSelectedBook" style="display: none"></asp:textbox>
+            </div>
+        </div>
+        
+        <div >
+            <ol class="list-group">
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item list-group-item-heading" >
+                        <a href="#"> @item.Title</a>
+                    </li>
+                }
+            </ol>
+        </div>
+    </div>
+}
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //$("#AddPanel").addClass("hide");
+            /*$('#ctl00_MainContent_btnAddWish').click(function () {
+                $("#AddPanel").addClass("show");
+                return false;
+            });*/
+        });
+
+        function OpenAddPage(calledFrom) {
+
+            window.showModalDialog("AddToList.aspx?Mode=" + calledFrom, "name", "dialogWidth:700px;dialogHeight:500px;resizable:yes;center:yes");
+            Home.submit();
+            return true;
+        };
+
+        function OpenDetailPage(Title) {
+            window.showModalDialog("BookFoundDetails.aspx?Title=" + Title, "name", "dialogWidth:700px;dialogHeight:500px;resizable:yes;center:yes");
+            return false;
+        };
+    </script>
+    <script>
+        $(document).ready(
+            function () {
+                $("#wish").addClass("active");
+            }
+        );
+    </script>

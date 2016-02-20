@@ -1,0 +1,71 @@
+﻿@model Booxwap.Mvc.Models.HomeModel
+
+@using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+    <!-- No Books Section Start -->
+    <div class="well" id="divNoBooks" style="display:none">
+        <div class="text-center">
+            <h5>Bigger wishlist means more discoveries</h5>
+        </div>
+        <div class="text-center">
+            <input type="submit" id="btnAddWish" value="Add to Wishlist" class="btn btn-primary btn-sm" />
+        </div>
+
+        <div class="text-center">
+            <h5>The more you share the more you get noticed</h5>
+        </div>
+        <div class="text-center">
+            <input type="submit" id="btnAddShare" value="Share" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+    <!-- No Books Section End -->
+
+    <!-- Found Books Section Start -->
+    <div class="well" id="divFoundWorkflow">
+        <div>
+            <h4>Wishlist Matches</h4>
+        </div>
+        <div >
+            <ol class="list-group">
+                @foreach (var item in Model.FoundBooks)
+                {
+                    <li class="list-group-item list-group-item-heading">
+                        <strong><a href="#">@item.FirstName @item.LastName</a></strong> has <br /> <a href="#">@item.Title</a>
+                    </li>
+                }
+            </ol>
+        </div>        
+    </div>
+    <!-- Found Books Section End -->
+
+    <!-- Activity Section Start -->
+    <div class="well" id="divNoActivity">
+        <div class="text-center">
+            <h5>Invite more friends</h5>
+        </div>
+        <div class="text-center">
+            <input type="submit" id="btnFBInvite" value="Share on Facebook" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+    <div class="well" id="divActivityWorkflow">
+        <div class="">
+            <h4>News</h4>
+        </div>
+        <ol class="list-group">
+            @foreach (var item in Model.News)
+            {
+                <li class="list-group-item list-group-item-heading" >
+                    <a href="#"> @item.UserFullName </a> <i>@item.ActionType </i><a href="#"> @item.BookName</a>
+                </li>
+            }
+        </ol>
+    </div>
+    <!-- Activity Section End -->
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#divNoBooks").hide();
+        $("#divNoActivity").hide();
+    });
+</script>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>booXwap</title>
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="~/Scripts/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <link defer="defer" rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
+    <link defer="defer" rel="stylesheet" href="~/Content/bootstrap/css/bootstrap-theme.min.css" />
+    <link defer="defer" rel="stylesheet" href="~/Content/Site.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="appFont SiteCommon">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!--Group to be responsive for Handheld Devices-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" >booXwap</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li id="home"><a href="~/Home">Home</a></li>
+                    <li id="share"><a href="~/List/Share">Share</a></li>
+                    <li id="wish"><a href="~/List/Wish">Wish List</a></li>
+                    <li id="reviews"><a href="~/Reviews">Reviews</a></li>
+                    <li id="aboutus"><a href="~/Company">About Us</a></li>
+                    <li id="logout"><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿<div class="text-center">
+
+    <div class="text-center" style="padding-bottom: 10px">
+        <asp:button id="Button1" runat="server" text="Write a Review" onclientclick="return WriteReview();" cssclass="btn btn-sm btn-info" />
+    </div>
+    <div class="text-center well">
+        <asp:datagrid id="gridOtherReviews" cssclass="table" autogeneratecolumns="false" onitemcommand="Reviews_ItemDataBound" runat="server" gridlines="None">
+
+                        <Columns>
+                            <asp:ButtonColumn DataTextField="Title" CommandName="Details"></asp:ButtonColumn>
+                            <asp:BoundColumn DataField="ID" Visible="false"></asp:BoundColumn>
+                        </Columns>
+                    </asp:datagrid>
+    </div>
+    <div class="text-left well">
+        <div>
+            <asp:label id="lblSelectedReview" runat="server"></asp:label>
+        </div>
+        <div>
+            <asp:label id="lblReviewBy" runat="server" visible="false"></asp:label>
+            <img id="imgFBProfile" runat="server" src="" />
+        </div>
+    </div>
+    <div class="text-center well">
+        <div>
+            <h4>My Reviews</h4>
+        </div>
+        <asp:datagrid id="gridMyReviews" cssclass="table" autogeneratecolumns="false" onitemcommand="Reviews_ItemDataBound" runat="server" gridlines="None">
+                        <Columns>
+                            <asp:ButtonColumn DataTextField="Title" CommandName="Details"></asp:ButtonColumn>
+                            <asp:BoundColumn DataField="ID" Visible="false"></asp:BoundColumn>
+                        </Columns>
+                    </asp:datagrid>
+    </div>
+</div>
+<div style="display: none">
+    <div class="text-center">
+        <asp:textbox id="txtTitle" runat="server" readonly="true" textmode="SingleLine" cssclass="form-control"></asp:textbox>
+        <img id="imgSearch" src="Images/search.png" width="25px" height="25px" style="cursor: pointer" alt="Search" onclick="return OpenAddPage('Review');" />
+    </div>
+
+    <div class="text-center" style="margin-top: 20px; margin-bottom: 20px">
+        <asp:button id="btnSave" runat="server" text="Save" onclick="btnSave_Click" cssclass="btn btn-sm btn-info" />
+        <asp:button id="btnFBShare" runat="server" text="Share on Facebook" cssclass="btn btn-sm btn-info" />
+    </div>
+    <div class="text-center">
+        <asp:textbox id="txtReview" cssclass="form-control" runat="server" textmode="MultiLine" rows="15" style="overflow: hidden; align-self: center"></asp:textbox>
+    </div>
+</div>
+<input type="hidden" runat="server" id="hdnAmazonURL" />
+<input type="hidden" runat="server" id="hdnAuthor" />
+<input type="hidden" runat="server" id="hdnType" />
+<input type="hidden" runat="server" id="hdnTitle" />
+<script>
+    $(document).ready(
+        function () {
+
+            $("#reviews").addClass("active");
+        }
+    );
+</script>
+<script type="text/javascript">
+    function OpenAddPage(calledFrom) {
+        var ReturnValue;
+        ReturnValue = window.showModalDialog("AddToList.aspx?Mode=" + calledFrom, "name", "dialogWidth:700px;dialogHeight:500px;resizable:yes;center:yes");
+
+        if (ReturnValue == undefined) {
+            ReturnValue = window.returnValue;
+        }
+
+        if (ReturnValue != undefined) {
+            document.getElementById("txtTitle").value = ReturnValue.BookName;
+            document.getElementById("hdnTitle").value = ReturnValue.BookName;
+            document.getElementById("hdnAmazonURL").value = ReturnValue.AmazonURL;
+            document.getElementById("hdnAuthor").value = ReturnValue.Author;
+            document.getElementById("hdnType").value = ReturnValue.Type;
+        }
+        return false;
+    };
+
+    function WriteReview() {
+        document.getElementById('tblReviews').style.display = "none";
+        document.getElementById('tblWriteReview').style.display = "inline";
+        document.getElementById("txtTitle").value = "";
+        document.getElementById("txtReview").value = "";
+        return false;
+    }
+</script>

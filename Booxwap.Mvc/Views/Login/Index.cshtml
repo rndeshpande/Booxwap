@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>booXwap</title>
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <link defer="defer" rel="stylesheet" href="../Content/bootstrap/css/bootstrap.min.css" />
+    <link defer="defer" rel="stylesheet" href="../Content/bootstrap/css/bootstrap-theme.min.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="appFont SiteCommon">
+    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        <div class="container-fluid">
+            <div class="text-center">
+                <div style="font-size: 56px; margin-bottom: 50px; margin-top: 60px; font-family: Gabriela">
+                    booXwap
+                </div>
+
+                <div style="font-size: 24px; margin-bottom: 80px">
+                    Find Books. Make Friends.
+                </div>
+
+                <div id="loginButton" style="font-size: 20px; margin-bottom: 10px">
+                    <img src="../Images/f_logo.png" width="30px" height="30px" alt="facebook" />
+                    Sign in with Facebook
+                </div>
+                <input type="submit" id="login" name="login" style="font-size: 20px; color: White;" class="btn btn-lg btn-primary" value="Login" />
+            </div>
+        </div>
+    }
+</body>
+</html>
